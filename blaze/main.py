@@ -81,7 +81,10 @@ def get_raw_bc_from_reads(reads, min_q=0, kit=None, **kwargs):
         putative_bcs.append(read.raw_bc)
         putative_bc_min_qs.append(read.raw_bc_min_q)
         umis.append(read.putative_UMI)
-        trim_idxs.append(read.polyT_trimming_idx)
+        if kit in ['3v4', '3v3', '3v2', '5v3', '5v2']:
+            trim_idxs.append(read.polyT_trimming_idx)
+        elif kit in [ '5v3', '5v2']:
+            trim_idxs.append(read.adator_trimming_idx)
         pre_bc_flankings.append(read.pre_bc_flanking)
         post_umi_flankings.append(read.post_umi_flanking)
         
